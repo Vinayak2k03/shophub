@@ -1,140 +1,87 @@
-# ShopHub - E-Commerce Platform
+# ShopHub – Full-Stack E-Commerce Application
 
-A modern, full-featured e-commerce application built with Next.js 16, TypeScript, Prisma, and PostgreSQL.
+## 📌 Assignment Track
+**Full-Stack Development Assignment (E-commerce)**
 
-## 🚀 Features
+---
 
-### Authentication & Security
-- Google OAuth 2.0 integration
-- Email/Password authentication with bcrypt
-- Email verification with OTP (10-minute expiry)
-- JWT-based session management
-- Role-based access control (USER/ADMIN)
+## 🔗 Deployment Link
 
-### User Features
-- Browse products with responsive design
-- Shopping cart management
-- Order placement and tracking
-- Order history
-- User profile management
+- **Live Deployment:** https://shophub-liard.vercel.app/
 
-### Admin Features
-- Product management (Create, Read, Update, Delete)
-- Order management and status updates
-- Dashboard with analytics
-- Inventory management
+---
 
-## 🛠️ Tech Stack
+## 📖 Project Overview
 
-- **Framework:** Next.js 16.1 (App Router, React Server Components)
-- **Language:** TypeScript 5.9
-- **Database:** PostgreSQL with Prisma ORM
-- **Authentication:** Auth.js (NextAuth.js) v5
-- **Styling:** Tailwind CSS 3.4
-- **UI Components:** Radix UI
-- **Email:** Nodemailer
-- **Deployment:** Vercel-ready
+ShopHub is a **simple full-stack e-commerce web application** where users can browse products, add them to a cart, and place orders.  
+An admin can add products and view all orders.
 
-## 📦 Installation
+The objective of this project is **not to build a production-ready system**, but to demonstrate:
+- Understanding of a common real-world problem
+- Clean frontend–backend integration
+- Logical API design
+- Proper data flow between UI, backend, and database
 
-### Prerequisites
-- Node.js 18+ 
-- PostgreSQL database (local or cloud like Neon)
-- Google OAuth credentials (optional)
-- Email service credentials (optional)
+---
 
-### Setup
+## ✅ Features Implemented
 
-1. **Clone and install dependencies:**
-```bash
-git clone https://github.com/Vinayak2k03/shophub.git .
-npm install
-```
+### 👤 User Features
+- View list of products
+- View product details
+- Add products to cart
+- Place an order
+- View order history
 
-2. **Configure environment variables:**
-Create a `.env` file in the root directory:
+### 🛠️ Admin Features
+- Add new products
+- View all user orders
 
-```env
-# Database
-DATABASE_URL="postgresql://user:password@host:5432/dbname"
+(Admin access is role-based)
 
-# Auth.js
-AUTH_SECRET="your-secret-key-min-32-chars"
-NEXTAUTH_URL="http://localhost:3000"
+---
 
-# Google OAuth (Optional)
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
+## 🧠 How the Application Works
 
-# Email (Optional - for OTP)
-EMAIL_SERVER_HOST="smtp.gmail.com"
-EMAIL_SERVER_PORT="587"
-EMAIL_SERVER_USER="your-email@gmail.com"
-EMAIL_SERVER_PASSWORD="your-app-password"
-EMAIL_FROM="noreply@shophub.com"
-```
+- The application is built using **Next.js as a full-stack framework**
+- Frontend pages are implemented using **Next.js App Router**
+- Backend logic is handled via **Next.js API routes and server actions**
+- PostgreSQL is used to store users, products, carts, and orders
+- Prisma ORM manages database interactions
+- Authentication supports **Google OAuth** and **Email + Password with OTP verification**
 
-Generate `AUTH_SECRET`:
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
-```
+### Authentication Flow
+1. User signs up using email and password  
+2. An OTP is sent to the user’s email for verification  
+3. After successful verification, the user can log in  
+4. Users can alternatively log in using Google OAuth  
+5. Role-based access (USER / ADMIN) controls admin functionality  
 
-3. **Setup database:**
-```bash
-# Push schema to database
-npm run db:push
+---
 
-# Seed with sample data
-npm run db:seed
-```
+## 🛠️ Tech Stack Used
 
-4. **Run development server:**
-```bash
-npm run dev
-```
+- **Frontend:** Next.js (App Router), React, TypeScript  
+- **Backend:** Node.js (via Next.js API routes)  
+- **Database:** PostgreSQL  
+- **ORM:** Prisma  
+- **Authentication:** Auth.js (NextAuth v5)  
+- **Styling:** Tailwind CSS  
+- **Deployment:** Vercel (Frontend + Backend), Cloud PostgreSQL  
 
-Visit [http://localhost:3000](http://localhost:3000)
+---
 
-## 👤 Default Credentials
+## 🚀 Deployment Details
 
-After seeding, use these credentials:
+- **Frontend:** Deployed on Vercel  
+- **Backend:** Implemented as serverless APIs using Next.js and deployed on Vercel  
+- **Database:** PostgreSQL hosted on a cloud provider (Neon)
 
-**Admin Account:**
-- Email: `admin@shophub.com`
-- Password: `Admin123!`
+This setup keeps the architecture **simple, clean, and easy to explain**, which aligns well with the assignment requirements.
 
-**User Account:**
-- Email: `user@shophub.com`
-- Password: `Admin123!`
+---
 
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push code to GitHub
-2. Import project in Vercel
-3. Add environment variables
-4. Deploy
-
-### Environment Variables for Production
-
-Ensure these are set in your deployment platform:
-- `DATABASE_URL` - Production PostgreSQL connection string
-- `AUTH_SECRET` - Strong random secret
-- `NEXTAUTH_URL` - Production URL (e.g., https://yourdomain.com)
-- `GOOGLE_CLIENT_ID` - OAuth credentials
-- `GOOGLE_CLIENT_SECRET` - OAuth credentials
-- `EMAIL_SERVER_*` - Email service credentials
-
-### Database Migration
-
-For production deployments, use migrations:
-```bash
-npm run db:migrate
-```
-
-## 📁 Project Structure
-
+## 📁 Project Structure (Simplified)
 ```
 ├── app/                    # Next.js App Router
 │   ├── (shop)/            # Customer-facing pages
@@ -151,59 +98,32 @@ npm run db:migrate
 ├── server/               # Server actions
 └── types/                # TypeScript types
 ```
+---
 
-## 🔒 Security Features
+## ⚠️ Assumptions Made
 
-- Password hashing with bcrypt
-- CSRF protection
-- SQL injection prevention (Prisma)
-- XSS protection
-- Secure session management
-- Role-based access control
-- Email verification
+- No payment gateway is implemented (as mentioned in the assignment)
+- Admin users are role-based and seeded initially
+- Focus is on core functionality rather than advanced optimizations
+- Email service is assumed to be available for OTP verification
 
-## 🎨 UI/UX
+---
 
-- Fully responsive design
-- Dark/Light mode support
-- Loading states and skeletons
-- Toast notifications
-- Form validation
-- Accessible components (Radix UI)
+## 🚧 Challenges Faced & Learnings
 
-## 📝 Available Scripts
+- Designing a clean authentication flow with OTP verification  
+- Implementing role-based access for admin features  
+- Structuring the project to clearly separate frontend and backend logic  
+- Deploying a full-stack Next.js application with database integration  
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run db:push` - Push schema to database
-- `npm run db:seed` - Seed database with sample data
-- `npm run db:migrate` - Run database migrations
-- `npm run prisma:studio` - Open Prisma Studio
 
-## 🤝 Contributing
+---
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+## 👤 Candidate Details
 
-## 📄 License
+- **Name:** Vinayak Nagar  
+- **Enrollment No.:** E22CSEU0332  
+- **Batch:** B12  
+- **University:** Bennett University  
+- **Role Applied For:** Full Stack Intern
 
-MIT License - see LICENSE file for details
-
-## 🔗 Links
-
-- [Documentation](./DEPLOYMENT.md)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Prisma Documentation](https://www.prisma.io/docs)
-- [Auth.js Documentation](https://authjs.dev)
-
-## 💡 Support
-
-For issues and questions:
-- Open an issue on GitHub
-- Check existing documentation
-- Review deployment guide
