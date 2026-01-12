@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, ShoppingCart, Users, TrendingUp } from "lucide-react";
@@ -11,6 +13,15 @@ export const metadata = {
 };
 
 export default async function AdminDashboard() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/auth/signin");
+  }
+
+  if (session.user.role !== "ADMIN") {
+    redirect("/");
+  }
   const [ordersResult, productsResult] = await Promise.all([
     getAllOrders(),
     getProducts(),
